@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenkauGIT</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+        #vanta-bg {
+            width: 100%;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            font-family: Arial, sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .project-button {
+            font-family: Arial, sans-serif;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .project-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="vanta-bg">
+        <h1>Genkauzen Github</h1>
+        <a href="https://github.com/genkauzen/dspoof" class="project-button" target="_blank">dspoof</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.clouds.min.js"></script>
+    <script>
+        VANTA.CLOUDS({
+            el: "#vanta-bg", 
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            backgroundColor: 0x0,
+            skyColor: 0x0,
+            sunColor: 0x0,
+            sunGlareColor: 0x0,
+            sunlightColor: 0x0,
+            speed: 1.40
+        });
+    </script>
+</body>
+</html>
