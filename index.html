@@ -41,7 +41,7 @@
         .project-button {
             font-size: 18px;
             padding: 15px 30px;
-            background-color: #007BFF;
+            background-color: #000000; 
             color: white;
             border: none;
             border-radius: 50px;
@@ -51,7 +51,7 @@
             transition: background-color 0.3s, transform 0.3s;
         }
         .project-button:hover {
-            background-color: #0056b3;
+            background-color: #333333; 
             transform: scale(1.05);
         }
         .project-button:focus {
@@ -62,7 +62,6 @@
 <body>
     <div id="vanta-bg">
         <h1>github.com/genkauzen</h1>
-      
         <a href="https://github.com/genkauzen/dspoof" class="project-button" target="_blank">dspoof</a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -75,12 +74,13 @@
             gyroControls: false,
             minHeight: 200.00,
             minWidth: 200.00,
-            backgroundColor: 0x101010,  // Dark background
-            skyColor: 0x1e1e1e,        // Darker sky
-            sunColor: 0x9f9f9f,        // Subtle sunlight
-            sunGlareColor: 0xcccccc,   // Soft glare
-            sunlightColor: 0x666666,   // Mild sunlight
-            speed: 1.0
+            skyColor: 0x0,
+            cloudColor: 0xffffff,
+            cloudShadowColor: 0x0,
+            sunColor: 0x0,
+            sunGlareColor: 0xf2f2f2,
+            sunlightColor: 0x0,
+            speed: 3.00
         });
     </script>
 </body>
