@@ -3,75 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>labubed</title>
+  <title>git text</title>
   <link rel="icon" href="icon.ico" type="image/x-icon">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-    #vanta-bg {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-    }
-    h1 {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    .project-button {
-      font-size: 18px;
-      padding: 15px 30px;
-      background-color: #000;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      text-decoration: none;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-    .project-button:hover {
-      background-color: #333;
-      transform: scale(1.05);
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body,html{width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif}
+    #vanta-bg{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}
+    h1{font-size:4rem;margin-bottom:20px;font-weight:bold;text-shadow:2px 2px 4px rgba(0,0,0,0.5)}
+    .project-button{font-size:18px;padding:15px 30px;background-color:#000;color:#fff;border:none;border-radius:50px;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:background-color 0.3s,transform 0.3s}
+    .project-button:hover{background-color:#333;transform:scale(1.05)}
   </style>
 </head>
 <body>
   <div id="vanta-bg">
-    <h1>genkauzen git</h1>
+    <h1 id="pizza_text">title text</h1>
     <a href="https://github.com/genkauzen/dspoofSE" class="project-button" target="_blank">dspoof</a>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
   <script>
-    VANTA.CELLS({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      color1: 0x192587,
-      color2: 0x000000
-    })
+    VANTA.CELLS({el:"#vanta-bg",mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,scale:1,color1:0x192587,color2:0x000000})
+
+    let chicken_nuggets = ["$","l","l4","la","la6","lab","laby","labu","labu6","labub","labub3","labube","labube9","labubed"]
+    let potato_chips = ["d","du","dum","dumb","dumba","dumbas","dumbass","dumbass ","dumbass w","dumbass we","dumbass web","dumbass webs","dumbass websi","dumbass websit","dumbass website"]
+
+    function taco(frames, fn, speed){
+      let i = 0, dir = true
+      setInterval(()=>{
+        fn(frames[i])
+        if(dir){i++; if(i>=frames.length-1) dir=false}
+        else{i--; if(i<=0) dir=true}
+      },speed)
+    }
+
+    taco(chicken_nuggets, txt=>document.title=txt,300)
+    let burger=document.getElementById("pizza_text")
+    taco(potato_chips, txt=>burger.textContent=txt,250)
   </script>
 </body>
 </html>
-
