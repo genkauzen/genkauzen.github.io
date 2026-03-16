@@ -1,48 +1,382 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> </title>
-  <link rel="icon" href="icon.ico" type="image/x-icon">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body,html{width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif}
-    #vanta-bg{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}
-    h1{font-size:4rem;margin-bottom:20px;font-weight:bold;text-shadow:2px 2px 4px rgba(0,0,0,0.5)}
-    .project-button{font-size:18px;padding:15px 30px;background-color:#000;color:#fff;border:none;border-radius:50px;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:background-color 0.3s,transform 0.3s}
-    .project-button:hover{background-color:#333;transform:scale(1.05)}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>genkauzen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07080c;
+  --surface:#0d0f15;
+  --border:#1a1e2e;
+  --border2:#242840;
+  --accent:#5865f2;
+  --text:#dde1f0;
+  --muted:#525878;
+  --sub:#888eac;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(88,101,242,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(88,101,242,0.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  pointer-events:none;z-index:0;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  height:52px;
+  background:rgba(7,8,12,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  position:absolute;left:1.25rem;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-av{
+  width:24px;height:24px;border-radius:50%;
+  border:1px solid var(--border2);
+  display:block;
+}
+.nav-name{
+  font-family:'DM Mono',monospace;
+  font-size:12px;color:var(--sub);
+  letter-spacing:0.03em;
+}
+.nav-links{display:flex;gap:2px;}
+.nav-btn{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:500;
+  padding:6px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:color 0.2s,background 0.2s;
+}
+.nav-btn:hover{color:var(--sub);}
+.nav-btn.active{color:var(--text);}
+main{
+  position:relative;z-index:1;
+  padding-top:52px;
+  width:100%;
+  max-width:760px;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding-left:1.5rem;padding-right:1.5rem;
+}
+.section{display:none;width:100%;animation:fade 0.35s ease;}
+.section.active{display:block;}
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.hero{text-align:center;padding:4rem 0;}
+.hero-title{
+  display:inline-flex;align-items:center;
+  gap:16px;margin-bottom:1.25rem;
+}
+.hero-av{
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid var(--border2);
+  display:block;flex-shrink:0;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--muted);
+  letter-spacing:0.12em;
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(2.8rem,7vw,4.8rem);
+  font-weight:300;
+  letter-spacing:-0.03em;
+  line-height:1;
+  margin-bottom:0;
+  color:var(--text);
+}
+.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;}
+.btn-p{
+  background:var(--accent);color:#fff;
+  border:none;font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:500;
+  padding:9px 20px;border-radius:8px;
+  cursor:pointer;transition:opacity 0.2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-p:hover{opacity:0.85;}
+.btn-g{
+  background:transparent;color:var(--sub);
+  border:1px solid var(--border2);
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:500;
+  padding:9px 20px;border-radius:8px;
+  cursor:pointer;transition:color 0.2s,border-color 0.2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-g:hover{color:var(--text);border-color:var(--muted);}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--muted);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  text-align:center;
+}
+.cards{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);}
+.card{
+  background:var(--surface);
+  padding:1.5rem 1.75rem;
+  transition:background 0.2s;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+}
+.card:hover{background:#0f1119;}
+.card-left{flex:1;}
+.card-name{font-size:15px;font-weight:500;margin-bottom:0.4rem;}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:400;}
+.card-tags{display:flex;gap:6px;margin-top:0.75rem;flex-wrap:wrap;}
+.tag{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--muted);
+  border:1px solid var(--border2);
+  padding:2px 8px;border-radius:4px;
+}
+.card-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;}
+.clink{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:500;
+  color:var(--muted);
+  border:1px solid var(--border2);
+  padding:5px 12px;border-radius:6px;
+  cursor:pointer;transition:color 0.2s,border-color 0.2s;
+  text-decoration:none;white-space:nowrap;
+  background:transparent;
+}
+.clink:hover{color:var(--text);border-color:var(--muted);}
+.clink-accent{
+  background:var(--accent);color:#fff;
+  border-color:var(--accent);
+}
+.clink-accent:hover{opacity:0.85;color:#fff;border-color:var(--accent);}
+.info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  max-width:520px;
+  margin:0 auto;
+}
+@media(max-width:480px){.info-grid{grid-template-columns:1fr;}}
+.info-wrap{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:2rem 1.5rem;
+  text-align:center;
+  background:var(--surface);
+}
+.info-av{
+  width:64px;height:64px;
+  border-radius:50%;
+  border:1px solid var(--border2);
+  margin:0 auto 1rem;display:block;
+}
+.info-name{font-size:18px;font-weight:500;margin-bottom:0.25rem;}
+.info-handle{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--muted);
+  margin-bottom:1.75rem;
+}
+.info-sep{height:1px;background:var(--border);margin:1.5rem 0;}
+.info-row{
+  display:flex;align-items:center;
+  justify-content:center;gap:8px;
+  font-size:13px;color:var(--muted);
+  margin-bottom:10px;
+}
+.claude-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid var(--border2);
+  border-radius:20px;padding:3px 10px 3px 6px;
+  font-size:12px;font-weight:500;color:var(--sub);
+}
+.cl-dot{
+  width:16px;height:16px;border-radius:50%;
+  background:#d97757;
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+#ad{
+  position:fixed;bottom:1.25rem;right:1.25rem;
+  z-index:200;width:260px;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:12px;padding:1rem 1.1rem;
+  animation:slide 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.8s both;
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+}
+@keyframes slide{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.ad-x{
+  position:absolute;top:8px;right:10px;
+  background:transparent;border:none;
+  color:var(--muted);cursor:pointer;font-size:15px;
+  transition:color 0.2s;line-height:1;
+}
+.ad-x:hover{color:var(--sub);}
+.ad-name{font-size:13px;font-weight:600;margin-bottom:3px;}
+.ad-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:0.75rem;font-weight:400;}
+.ad-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.75rem;}
+.ap{
+  font-family:'DM Mono',monospace;
+  font-size:9px;padding:2px 7px;
+  border-radius:4px;border:1px solid;
+}
+.ap-g{color:#5dcaa5;border-color:rgba(93,202,165,0.25);background:rgba(93,202,165,0.05);}
+.ap-b{color:var(--accent);border-color:rgba(88,101,242,0.25);background:rgba(88,101,242,0.05);}
+.ap-a{color:#ef9f27;border-color:rgba(239,159,39,0.25);background:rgba(239,159,39,0.05);}
+.ad-btns{display:flex;gap:5px;}
+.ad-main{
+  flex:1;background:var(--accent);border:none;
+  color:#fff;font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:500;
+  padding:6px 10px;border-radius:6px;
+  cursor:pointer;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.2s;
+}
+.ad-main:hover{opacity:0.85;}
+.ad-ch{
+  background:transparent;
+  border:1px solid var(--border2);color:var(--muted);
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:500;
+  padding:6px 10px;border-radius:6px;
+  cursor:pointer;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;
+  transition:color 0.2s,border-color 0.2s;
+}
+.ad-ch:hover{color:var(--text);border-color:var(--muted);}
+</style>
 </head>
 <body>
-  <div id="vanta-bg">
-    <h1 id="pizza_text"> </h1>
-    <a href="https://github.com/genkauzen/octadpi" class="project-button" target="_blank">OctaDPI</a>
+
+<div id="ad">
+  <button class="ad-x" onclick="this.parentElement.style.display='none'">×</button>
+  <div class="ad-name">Octa Network</div>
+  <div class="ad-desc">VPN с обходом РКН · без логов · 3 дня бесплатно · 100 ₽/мес</div>
+  <div class="ad-btns">
+    <a href="https://t.me/octa_netbot" target="_blank" class="ad-main">Попробовать</a>
+    <a href="https://t.me/octa_network" target="_blank" class="ad-ch">Канал</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://avatars.githubusercontent.com/u/154521536?v=4" class="nav-av" alt="av"/>
+    <span class="nav-name">genkauzen</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="show('home',this)">Main</button>
+    <button class="nav-btn" onclick="show('projects',this)">Repo's</button>
+    <button class="nav-btn" onclick="show('info',this)">Info</button>
+  </div>
+</nav>
+
+<main>
+
+  <div class="section active" id="home">
+    <div class="hero">
+      <div class="hero-title">
+        <img src="https://avatars.githubusercontent.com/u/154521536?v=4" class="hero-av" alt="av"/>
+        <h1>genkauzen</h1>
+      </div>
+      <div class="hero-actions">
+        <button class="btn-p" onclick="show('projects',document.querySelectorAll('.nav-btn')[1])">Repo's</button>
+        <a href="https://github.com/genkauzen" target="_blank" class="btn-g">GitHub ↗</a>
+      </div>
+    </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
-  <script>
-    VANTA.CELLS({el:"#vanta-bg",mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,scale:1,color1:0x192587,color2:0x000000})
+  <div class="section" id="projects">
+    <div class="section-eyebrow">REPO</div>
+    <div class="cards">
 
-    let chicken_nuggets = ["$","l","l4","la","la6","lab","laby","labu","labu6","labub","labub3","labube","labube9","labubed"]
-    let potato_chips = ["d","du","dum","dumb","dumb a","dumb as","dumb ass","dumb ass ","dumb ass w","dumb ass we","dumb ass web","dumb ass webs","dumb ass websi","dumb ass websit","dumb ass website"]
+      <div class="card">
+        <div class="card-left">
+          <div class="card-name">OctaDPI</div>
+          <div class="card-desc">Обход блокировок РКН без VPN. Аналог zapret, простая установка, автозапуск. Ядро — GoodbyeDPI.</div>
+        </div>
+        <div class="card-right">
+          <a href="https://github.com/genkauzen/octadpi/releases/latest" target="_blank" class="clink clink-accent">↓ Скачать</a>
+          <a href="https://github.com/genkauzen/octadpi" target="_blank" class="clink">GitHub</a>
+        </div>
+      </div>
 
-    function taco(frames, fn, speed){
-      let i = 0, dir = true
-      setInterval(()=>{
-        fn(frames[i])
-        if(dir){i++; if(i>=frames.length-1) dir=false}
-        else{i--; if(i<=0) dir=true}
-      },speed)
-    }
+      <div class="card">
+        <div class="card-left">
+          <div class="card-name">Octa Network</div>
+          <div class="card-desc">VPN с обходом белых списков РКН. Быстрые серверы, без логов. 3 дня бесплатно — 100 ₽/мес.</div>
+        </div>
+        <div class="card-right">
+          <a href="https://t.me/octa_netbot" target="_blank" class="clink">Бот ↗</a>
+          <a href="https://t.me/octa_network" target="_blank" class="clink">Канал ↗</a>
+        </div>
+      </div>
 
-    taco(chicken_nuggets, txt=>document.title=txt,300)
-    let burger=document.getElementById("pizza_text")
-    taco(potato_chips, txt=>burger.textContent=txt,250)
-  </script>
+    </div>
+  </div>
+
+  <div class="section" id="info">
+    <div class="info-grid">
+
+      <div class="info-wrap">
+        <img src="https://avatars.githubusercontent.com/u/154521536?v=4" class="info-av" alt="genkauzen"/>
+        <div class="info-name">genkauzen</div>
+        <div class="info-handle">github.com/genkauzen</div>
+        <a href="https://github.com/genkauzen" target="_blank" class="btn-g" style="font-size:12px;padding:7px 16px;">GitHub ↗</a>
+      </div>
+
+      <div class="info-wrap">
+        <img src="https://avatars.slack-edge.com/2025-05-14/8891273522918_30c38bf627ac73075db6_512.png" class="info-av" alt="Claude"/>
+        <div class="info-name">Claude</div>
+        <div class="info-handle">anthropic.com</div>
+        <a href="https://claude.ai" target="_blank" class="btn-g" style="font-size:12px;padding:7px 16px;">claude.ai ↗</a>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;">BUILT BY</span>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+</script>
 </body>
 </html>
-
-
-
